@@ -32,12 +32,8 @@ dependencies {
 
 tasks.withType(Test) {
     useJUnitPlatform()
-    systemProperties(System.getProperties()) //необходима для работы. помогает считывать переменные
-    //Без нее параметры из командной строки не будут передаваться в скрипт сборки.
-    //systemProperties - устанавливаем проперти в рантйам java, а в System.getProperties() - это проперти, которые пришли на вход в build.gradle,
-    // прикидываем их внутрь
-
-    testLogging { //чуть изменили и теперь будет побольше всего выводиться в консоль
+    systemProperties(System.getProperties()) 
+    testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
@@ -46,14 +42,13 @@ tasks.withType(Test) {
 }
 
 test {
-    //тестка "test", которая запускает все тесты проекта. дефолтная. если ее убрать, то по дефолту будет собирать с JUnit 4, а не 5.
-    useJUnitPlatform() //помогает переоперделить дефолтную таску "test", чтобы использовался JUnit 5, а не 4
+    useJUnitPlatform()
 }
 
 
-task registration_test(type: Test) { //тип таски
+task registration_test(type: Test) {
     systemProperties(System.getProperties())
     useJUnitPlatform {
-        includeTags("Registration") //запускаем тесты с тегом Registration
+        includeTags("Registration")
     }
 }
