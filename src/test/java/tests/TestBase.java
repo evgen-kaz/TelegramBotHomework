@@ -18,9 +18,6 @@ public class TestBase {
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browser = System.getProperty("browser", "chrome"); 
-        /*if (Configuration.browser == null) {
-            throw new IllegalStateException("Параметр 'browser' не передан через Jenkins, проверьте параметры запуска");
-        }*/
         Configuration.browserVersion = System.getProperty("browserVersion");
         Configuration.browserSize = System.getProperty("browserSize");
         Configuration.timeout = 10000;
